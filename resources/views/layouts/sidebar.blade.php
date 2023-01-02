@@ -41,6 +41,12 @@
                     <i class="fas fa-fw fa-users"></i>
                     <span>Users</span></a>
             </li>
+            <!-- Nav Item -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('earnings.index') }}">
+                    <i class="fas fa-fw fa-dollar-sign"></i>
+                    <span>Earnings</span></a>
+            </li>
         @endrole
 
         <!-- Divider -->

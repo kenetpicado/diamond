@@ -16,5 +16,8 @@
                 </tbody>
             </table>
         </div>
+        @isset($links)
+            {{ $links }}
+        @endisset
     </div>
 </div>

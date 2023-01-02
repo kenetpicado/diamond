@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Request;
 
 class HomeController extends Controller
 {
@@ -11,6 +11,8 @@ class HomeController extends Controller
         if (auth()->user()->hasRole('seller'))
             return redirect()->route('requests.index');
             
-        return view('home');
+        return view('home', [
+            'requests' => Request::SelectHome()->get()
+        ]);
     }
 }

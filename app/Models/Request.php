@@ -15,9 +15,10 @@ class Request extends Model
      * @var array
      */
     protected $fillable = [
-        'player_id', 
-        'player_name', 
-        'dollar_price', 
+        'player_id',
+        'player_name',
+        'usd_nio',
+        'dollar_price',
         'commission',
         'amount',
         'is_sent',
@@ -25,6 +26,33 @@ class Request extends Model
         'user_id',
         'sent_at',
     ];
+
+    public function scopeSelectHome($query)
+    {
+        return $query->select([
+            'usd_nio',
+            'dollar_price',
+            'amount',
+            'is_sent',
+            'is_paid'
+        ]);
+    }
+
+    public function scopeSelectEarning($query)
+    {
+        return $query->select([
+            'player_id',
+            'player_name',
+            'usd_nio',
+            'dollar_price',
+            'amount',
+        ]);
+    }
+
+    public function getUsdNioTotalAttribute()
+    {
+        return $this->usd_nio * $this->amount;
+    }
 
     public function getTotalPayAttribute()
     {
@@ -39,5 +67,15 @@ class Request extends Model
     public function getTotalSentAttribute()
     {
         return $this->total_commission + $this->total_pay;
+    }
+
+    public function getEarningAttribute()
+    {
+        return $this->dollar_price - $this->usd_nio;
+    }
+
+    public function getTotalEarningAttribute()
+    {
+        return $this->earning * $this->amount;
     }
 }

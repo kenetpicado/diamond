@@ -22,6 +22,7 @@ class RequestStore extends FormRequest
             'user_id' => auth()->user()->id,
             'dollar_price' => auth()->user()->dollar_price,
             'commission' => auth()->user()->commission,
+            'usd_nio' => config('usd.nio')
         ]);
     }   
 
@@ -38,7 +39,8 @@ class RequestStore extends FormRequest
             'amount' => 'required|integer',
             'dollar_price' => 'required',
             'commission' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'usd_nio' => 'required'
         ];
     }
 }

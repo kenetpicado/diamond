@@ -24,6 +24,8 @@ Route::middleware(['auth'])->group(function () {
         ->except(['show']);
 
     Route::resource('requests', RequestController::class);
+
+    Route::get('earnings', [EarningController::class, 'index'])->name('earnings.index');
 });
 
 Auth::routes();
