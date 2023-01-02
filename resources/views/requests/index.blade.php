@@ -4,6 +4,11 @@
     <!-- Page Heading -->
     <x-heading label="Requests" route="requests.create"></x-heading>
 
+    <p class="mb-4">
+        Dollar: C$ {{ auth()->user()->dollar_price }}, Commission: C$ {{ auth()->user()->commission }}; Total: C$
+        {{ auth()->user()->commission + auth()->user()->dollar_price }}
+    </p>
+
     <!-- Content Row -->
     <div class="row">
 
