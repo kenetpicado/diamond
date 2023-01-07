@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RequestStore extends FormRequest
@@ -18,10 +19,14 @@ class RequestStore extends FormRequest
 
     protected function prepareForValidation()
     {
+        $user = auth()->user()->hasRole('admin')
+            ? User::find($this->user_id)
+            : auth()->user();
+
         $this->merge([
-            'user_id' => auth()->user()->id,
-            'dollar_price' => auth()->user()->dollar_price,
-            'commission' => auth()->user()->commission,
+            'user_id' => $user->id,
+            'dollar_price' => $user->dollar_price,
+            'commission' => $user->commission,
             'usd_nio' => config('usd.nio')
         ]);
     }   
@@ -40,7 +45,9 @@ class RequestStore extends FormRequest
             'dollar_price' => 'required',
             'commission' => 'required',
             'user_id' => 'required',
-            'usd_nio' => 'required'
+            'usd_nio' => 'required',
+            'is_sent' => 'nullable|boolean',
+            'is_paid' => 'nullable|boolean',
         ];
     }
 }

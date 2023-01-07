@@ -34,20 +34,23 @@
                 <span>Requests</span></a>
         </li>
 
-        @role('admin')
-            <!-- Nav Item -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('users.index') }}">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Users</span></a>
-            </li>
-            <!-- Nav Item -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('earnings.index') }}">
-                    <i class="fas fa-fw fa-dollar-sign"></i>
-                    <span>Earnings</span></a>
-            </li>
-        @endrole
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('users.index') }}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Users</span></a>
+        </li>
+        <!-- Nav Item -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('earnings.index') }}">
+                <i class="fas fa-fw fa-dollar-sign"></i>
+                <span>Earnings</span></a>
+        </li>
+
+         <li class="nav-item">
+            <a class="nav-link" href="https://pagostore.com/app" target="_blank">
+                <i class="fas fa-fw fa-link"></i>
+                <span>Garena Center</span></a>
+        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

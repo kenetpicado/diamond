@@ -8,9 +8,8 @@ class EarningService
 {
     public function index()
     {
-        return Request::query()
+        return Request::where('is_paid', true)
             ->latest('id')
-            ->where('is_paid', true)
             ->selectEarning()
             ->get();
     }

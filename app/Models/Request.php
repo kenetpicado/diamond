@@ -12,7 +12,7 @@ class Request extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @fillable array
      */
     protected $fillable = [
         'player_id',
@@ -54,7 +54,7 @@ class Request extends Model
         return $this->usd_nio * $this->amount;
     }
 
-    public function getTotalPayAttribute()
+    public function getTotalPayAttribute(): float
     {
         return $this->amount * $this->dollar_price;
     }

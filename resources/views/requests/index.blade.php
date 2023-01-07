@@ -84,7 +84,9 @@
         @forelse ($requests as $request)
             <tr>
                 <td data-title="ID">
-                    {{ $request->player_id }}
+                    <label onclick="copy('{{ $request->player_id }}')" class="text-primary"  role="button">
+                        {{ $request->player_id }}
+                    </label>
                     <br>
                     <small class="text-secondary">
                         {{ $request->player_name ?? 'No name' }}
@@ -117,4 +119,11 @@
             </tr>
         @endforelse
     </x-table>
+
+    <script>
+        function copy(player_id) {
+            navigator.clipboard.writeText(player_id);
+            alert("Copied the text: " + player_id);
+        }
+    </script>
 @endsection
