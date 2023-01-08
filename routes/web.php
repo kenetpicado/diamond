@@ -19,13 +19,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    Route::resource('users', UserController::class)
-        ->middleware('role:admin')
-        ->except(['show']);
-
     Route::resource('requests', RequestController::class);
 
-    Route::get('earnings', [EarningController::class, 'index'])->name('earnings.index');
+    Route::middleware(['role:admin'])->group(function () {
+
+        Route::get('earnings', [EarningController::class, 'index'])->name('earnings.index');
+
+        Route::resource('users', UserController::class)->except(['show']);
+
+    });
+
 });
 
 Auth::routes();

@@ -90,14 +90,17 @@
 
                 <!-- Begin Page Content -->
                 <div class="container">
-
+                        @if(session('success'))
+                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                              <strong>Success!</strong> {{ session('success') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                     @yield('content')
-
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -142,6 +145,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const confirm_delete = () => {
+            confirm('Desea eliminar este registro?') || event.preventDefault();
+        }
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

@@ -37,7 +37,8 @@ class RequestController extends Controller
     {
         $this->requestService->store($request);
 
-        return redirect()->route('requests.index')->with('success');
+        return redirect()->route('requests.index')
+            ->with('success', 'Request created successfully.');
     }
 
     public function edit(Request $request): View
@@ -51,6 +52,15 @@ class RequestController extends Controller
     {
         $this->requestService->update($data, $request);
 
-        return redirect()->route('requests.index')->with('success');
+        return redirect()->route('requests.index')
+            ->with('success', 'Request updated successfully');
+    }
+
+    public function destroy(Request $request)
+    {
+        $request->delete();
+
+        return redirect()->route('requests.index')
+            ->with('success', 'Deleted successfully');
     }
 }
