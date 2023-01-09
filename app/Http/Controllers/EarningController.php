@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 
 class EarningController extends Controller
 {
-    public function __construct(
-        private EarningService $earningService
-    ) {
+    public function __construct(private EarningService $earningService)
+    {
     }
 
     public function index(): View

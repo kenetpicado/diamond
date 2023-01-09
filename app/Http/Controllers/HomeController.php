@@ -10,8 +10,9 @@ class HomeController extends Controller
 {
     public function index(): RedirectResponse|View
     {
-        if (auth()->user()->hasRole('seller'))
+        if (auth()->user()->hasRole('seller')) {
             return redirect()->route('requests.index');
+        }
 
         return view('home', [
             'requests' => Request::SelectHome()->get()

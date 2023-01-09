@@ -13,9 +13,8 @@ use Illuminate\Http\RedirectResponse;
 
 class RequestController extends Controller
 {
-    public function __construct(
-        private RequestService $requestService
-    ) {
+    public function __construct(private RequestService $requestService)
+    {
     }
 
     public function index(): View
@@ -58,6 +57,10 @@ class RequestController extends Controller
 
     public function destroy(Request $request)
     {
+        if ($request->is_sent) {
+            return redirect()->route('requests.index')->with('error', 'Request could not be deleted');
+        }
+
         $request->delete();
 
         return redirect()->route('requests.index')

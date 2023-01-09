@@ -7,4 +7,7 @@
         <a href="{{ route($route) }}"
             class="btn btn-sm btn-primary shadow-sm">{{ $btn }}</a>
     @endisset
+    @isset($slot)
+        {{ $slot }}
+    @endisset
 </div>
