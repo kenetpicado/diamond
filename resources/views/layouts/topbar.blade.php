@@ -46,6 +46,9 @@
                                 <div>Empty</div>
                             </a>
                         @endforelse
+                        <a class="dropdown-item text-center small text-gray-500" href="{{ route('alerts.index') }}">
+                            Show All
+                       </a>
                     </div>
                 </li>
             @endisset

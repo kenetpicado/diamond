@@ -20,7 +20,7 @@
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                 Total Pay</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                C$ {{ $requests->sum('total_pay') }}
+                                C$ {{ number_format($requests->sum('total_pay')) }}
                                 <small>(${{ $requests->sum('amount') }})</small>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
         @forelse ($requests as $request)
             <tr>
                 <td data-title="ID">
-                    <label onclick="copy('{{ $request->player_id }}')" class="text-primary"  role="button">
+                    <label  class="text-primary">
                         {{ $request->player_id }}
                     </label>
                     <br>
@@ -93,9 +93,9 @@
                     </small>
                 </td>
                 <td data-title="Amount ">$ {{ $request->amount }}</td>
-                <td data-title="Pay ">C$ {{ $request->total_pay }}</td>
+                <td data-title="Pay ">C$ {{ $request->total_pay_format }}</td>
                 <td data-title="Commission " class="text-success">C$ {{ $request->total_commission }}</td>
-                <td data-title="Total " class="font-weight-bold">C$ {{ $request->total_sent }}</td>
+                <td data-title="Total " class="font-weight-bold">C$ {{ $request->total_sent_format }}</td>
                 <td>
                     @if ($request->is_sent)
                         <i class="fas fa-fw fa-check text-success"></i>
@@ -119,11 +119,4 @@
             </tr>
         @endforelse
     </x-table>
-
-    <script>
-        function copy(player_id) {
-            navigator.clipboard.writeText(player_id);
-            alert("Copied the text: " + player_id);
-        }
-    </script>
 @endsection

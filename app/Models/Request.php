@@ -59,6 +59,11 @@ class Request extends Model
         return $this->amount * $this->dollar_price;
     }
 
+    public function getTotalPayFormatAttribute()
+    {
+        return number_format($this->total_pay);
+    }
+
     public function getTotalCommissionAttribute()
     {
         return $this->amount * $this->commission;
@@ -67,6 +72,11 @@ class Request extends Model
     public function getTotalSentAttribute()
     {
         return $this->total_commission + $this->total_pay;
+    }
+
+    public function getTotalSentFormatAttribute()
+    {
+        return number_format($this->total_sent);
     }
 
     public function getEarningAttribute()

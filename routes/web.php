@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\AlertController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,14 +22,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('requests', RequestController::class);
 
-    Route::middleware(['role:admin'])->group(function () {
+    Route::get('alerts', [AlertController::class, 'index'])->name('alerts.index');
 
+    Route::middleware(['role:admin'])->group(function () {
         Route::get('earnings', [EarningController::class, 'index'])->name('earnings.index');
 
         Route::resource('users', UserController::class)->except(['show']);
-
     });
-
 });
 
 Auth::routes();

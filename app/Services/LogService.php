@@ -6,7 +6,7 @@ use App\Models\Log;
 
 class LogService
 {
-    public function index()
+    public function index($take5 = true)
     {
         return Log::query()
             ->when(
@@ -14,7 +14,7 @@ class LogService
                 fn ($q) => $q->where('user_id', auth()->user()->id)
             )
             ->latest('id')
-            ->take(5)
+            ->when($take5, fn ($q) => $q->take(5))
             ->get();
     }
 
@@ -28,8 +28,9 @@ class LogService
             $request->touch('sent_at');
         }
 
-        if ($was_paid)
+        if ($was_paid) {
             $this->paid($request);
+        }
     }
 
     public function sent($request)

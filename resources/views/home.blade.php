@@ -12,7 +12,7 @@
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                 Sent</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                C$ {{ $requests->where('is_sent', true)->sum('usd_nio_total') }}
+                                C$ {{ number_format($requests->where('is_sent', true)->sum('usd_nio_total')) }}
                             </div>
                         </div>
                         <div class="col-auto">
